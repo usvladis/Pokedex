@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Pokedex: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
