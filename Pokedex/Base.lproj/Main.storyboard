@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,9 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bKo-zZ-Ja4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bKo-zZ-Ja4">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="poke_black"/>
+                                <color key="separatorColor" name="poke_black"/>
+                                <color key="sectionIndexBackgroundColor" name="poke_black"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PokemonListCell" rowHeight="150" id="fWG-EB-CXX" customClass="PokemonListCell" customModule="Pokedex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="150"/>
@@ -28,46 +31,77 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulbasaur" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-0n-urt">
-                                                    <rect key="frame" x="20" y="5" width="140" height="140"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGO-c2-02a">
+                                                    <rect key="frame" x="16" y="5" width="361" height="140"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholdertext.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="S3P-0n-urt">
+                                                            <rect key="frame" x="5" y="1.6666666666666572" width="140" height="137"/>
+                                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="S3P-0n-urt" secondAttribute="height" multiplier="1:1" id="xYt-wl-Qp5"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bulbasaur" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKW-A1-J7T">
+                                                            <rect key="frame" x="160" y="55" width="186" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="Sl1-6j-5XQ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                                            <color key="textColor" name="poke_black"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mty-Ri-fSo">
+                                                            <rect key="frame" x="5" y="0.0" width="140" height="140"/>
+                                                            <color key="tintColor" systemColor="tintColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="140" id="7Ib-UG-xBI"/>
+                                                                <constraint firstAttribute="height" constant="140" id="JCe-SD-rXg"/>
+                                                            </constraints>
+                                                        </activityIndicatorView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fc6-7T-zHZ">
+                                                            <rect key="frame" x="312" y="5" width="44" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="44" id="7ad-2E-GOO"/>
+                                                                <constraint firstAttribute="width" constant="44" id="uNz-S3-yKX"/>
+                                                            </constraints>
+                                                            <color key="tintColor" systemColor="systemGrayColor"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal">
+                                                                <imageReference key="image" image="star.fill" catalog="system" symbolScale="large"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.92156863209999995" green="0.92156863209999995" blue="0.83529412749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="S3P-0n-urt" secondAttribute="height" multiplier="1:1" id="Jwh-d0-Lba"/>
+                                                        <constraint firstItem="vKW-A1-J7T" firstAttribute="leading" secondItem="S3P-0n-urt" secondAttribute="trailing" constant="15" id="4R1-1B-bch"/>
+                                                        <constraint firstAttribute="bottom" secondItem="S3P-0n-urt" secondAttribute="bottom" id="4wf-e7-ybu"/>
+                                                        <constraint firstItem="vKW-A1-J7T" firstAttribute="centerY" secondItem="S3P-0n-urt" secondAttribute="centerY" id="4yP-eW-ICa"/>
+                                                        <constraint firstItem="S3P-0n-urt" firstAttribute="top" secondItem="nGO-c2-02a" secondAttribute="top" id="BkI-aU-51k"/>
+                                                        <constraint firstItem="fc6-7T-zHZ" firstAttribute="top" secondItem="nGO-c2-02a" secondAttribute="top" constant="5" id="JmU-yS-4EU"/>
+                                                        <constraint firstItem="S3P-0n-urt" firstAttribute="leading" secondItem="nGO-c2-02a" secondAttribute="leading" constant="5" id="S1A-Ae-nOa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vKW-A1-J7T" secondAttribute="trailing" constant="15" id="et7-E8-9y7"/>
+                                                        <constraint firstItem="mty-Ri-fSo" firstAttribute="centerY" secondItem="S3P-0n-urt" secondAttribute="centerY" id="s9B-79-sbT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fc6-7T-zHZ" secondAttribute="trailing" constant="5" id="wdP-Cd-EVs"/>
+                                                        <constraint firstItem="mty-Ri-fSo" firstAttribute="centerX" secondItem="S3P-0n-urt" secondAttribute="centerX" id="yid-Fy-hG4"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bulbasaur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKW-A1-J7T">
-                                                    <rect key="frame" x="180" y="60" width="193" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Sl1-6j-5XQ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fc6-7T-zHZ">
-                                                    <rect key="frame" x="329" y="20" width="44" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="7ad-2E-GOO"/>
-                                                        <constraint firstAttribute="width" constant="44" id="uNz-S3-yKX"/>
-                                                    </constraints>
-                                                    <color key="tintColor" systemColor="systemGrayColor"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal">
-                                                        <imageReference key="image" image="star.fill" catalog="system" symbolScale="large"/>
-                                                    </state>
-                                                </button>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskBound" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.16862745100000001" green="0.16078431369999999" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="vKW-A1-J7T" secondAttribute="trailing" constant="20" id="8zD-RK-7y4"/>
-                                                <constraint firstItem="vKW-A1-J7T" firstAttribute="leading" secondItem="S3P-0n-urt" secondAttribute="trailing" constant="20" id="M0C-g0-0tw"/>
-                                                <constraint firstAttribute="bottom" secondItem="S3P-0n-urt" secondAttribute="bottom" constant="5" id="T1d-NO-9ub"/>
-                                                <constraint firstItem="fc6-7T-zHZ" firstAttribute="top" secondItem="5hP-NH-bWH" secondAttribute="top" constant="20" id="U3X-wL-OsC"/>
-                                                <constraint firstItem="S3P-0n-urt" firstAttribute="leading" secondItem="5hP-NH-bWH" secondAttribute="leading" constant="20" id="XNu-1G-gaP"/>
-                                                <constraint firstItem="vKW-A1-J7T" firstAttribute="centerY" secondItem="S3P-0n-urt" secondAttribute="centerY" id="hwp-fn-QKU"/>
-                                                <constraint firstAttribute="trailing" secondItem="fc6-7T-zHZ" secondAttribute="trailing" constant="20" id="oA6-a2-IKF"/>
-                                                <constraint firstItem="S3P-0n-urt" firstAttribute="top" secondItem="5hP-NH-bWH" secondAttribute="top" constant="5" id="y2F-X9-24T"/>
+                                                <constraint firstItem="nGO-c2-02a" firstAttribute="top" secondItem="5hP-NH-bWH" secondAttribute="top" constant="5" id="LET-gM-HuV"/>
+                                                <constraint firstItem="nGO-c2-02a" firstAttribute="leading" secondItem="5hP-NH-bWH" secondAttribute="leading" constant="16" id="Mtx-F9-cDk"/>
+                                                <constraint firstAttribute="bottom" secondItem="nGO-c2-02a" secondAttribute="bottom" constant="5" id="Vu2-zz-Phl"/>
+                                                <constraint firstAttribute="trailing" secondItem="nGO-c2-02a" secondAttribute="trailing" constant="16" id="f8b-0V-4tr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="mty-Ri-fSo" id="3aJ-bf-xJK"/>
                                             <outlet property="button" destination="fc6-7T-zHZ" id="Mn6-KY-dGz"/>
                                             <outlet property="nameLabel" destination="vKW-A1-J7T" id="sHa-XG-JmL"/>
                                             <outlet property="pokemonImage" destination="S3P-0n-urt" id="jFa-a7-KXQ"/>
@@ -81,7 +115,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KgD-82-Ciu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="poke_black"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="bKo-zZ-Ja4" secondAttribute="bottom" id="26a-k2-2fF"/>
                             <constraint firstAttribute="trailing" secondItem="bKo-zZ-Ja4" secondAttribute="trailing" id="IXY-p7-RWy"/>
@@ -99,13 +133,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bulbasaur" width="1000" height="1000"/>
+        <image name="placeholdertext.fill" catalog="system" width="78" height="128"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="poke_black">
+            <color red="0.16862745098039217" green="0.16078431372549018" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

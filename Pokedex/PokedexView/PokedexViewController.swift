@@ -10,12 +10,13 @@ import UIKit
 class PokedexViewController: UIViewController{
     
     var pokemonList = [Pokemon]()
-    @IBOutlet var tableView: UITableView!
     let pokemonApi = PokemonAPIManager()
+    @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Start")
         tableView.rowHeight = 150
+        
         PokemonAPIManager.fetchPokemonData { [weak self] pokemonList, error in
             guard let self = self else { return }
             
@@ -35,17 +36,22 @@ class PokedexViewController: UIViewController{
                 }
             }
         }
+        
     }
     
     func config(for cell: PokemonListCell, indexPath: IndexPath) {
         let pokemon = pokemonList[indexPath.row]
-        cell.nameLabel.text = pokemon.name
+        cell.nameLabel.text = pokemon.name.uppercased()
+        cell.activityIndicator.isHidden = false
+        cell.activityIndicator.startAnimating()
         PokemonAPIManager.fetchPokemonImageURL(for: pokemon.name) { imageURL in
             DispatchQueue.main.async {
                 if let imageURL = imageURL {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
                     cell.loadImage(from: imageURL)
                     } else {
-                    cell.pokemonImage.image = UIImage(named: "bulbasaur")
+                        cell.pokemonImage.image = UIImage(systemName: "placeholdertext.fill")
                     }
                 }
             }

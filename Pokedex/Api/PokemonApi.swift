@@ -53,8 +53,7 @@ class PokemonAPIManager {
             }
             
             do {
-                let decoder = JSONDecoder()
-                let pokemonListResponse = try decoder.decode(PokemonListResponse.self, from: data)
+                let pokemonListResponse = try JSONDecoder().decode(PokemonListResponse.self, from: data)
                 
                 // Преобразование данных из API в массив объектов Pokemon
                 let pokemonList: [Pokemon] = pokemonListResponse.results.map { result in
@@ -71,32 +70,31 @@ class PokemonAPIManager {
     }
     
     static func fetchPokemonImageURL(for pokemon: String, completion: @escaping (URL?) -> Void) {
-            let urlString = "https://pokeapi.co/api/v2/pokemon/\(pokemon)/"
-            guard let url = URL(string: urlString) else {
+        let urlString = "https://pokeapi.co/api/v2/pokemon/\(pokemon)/"
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
                 completion(nil)
                 return
             }
             
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let data = data, error == nil else {
-                    completion(nil)
-                    return
-                }
+            do {
+                let pokemonData = try JSONDecoder().decode(PokemonData.self, from: data)
                 
-                do {
-                    let decoder = JSONDecoder()
-                    let pokemonData = try decoder.decode(PokemonData.self, from: data)
-                    
-                    // Получаем URL изображения покемона
-                    if let imageURLString = pokemonData.sprites.front_default, let imageURL = URL(string: imageURLString) {
-                        completion(imageURL)
-                    } else {
-                        completion(nil)
-                    }
-                } catch {
+                // Получаем URL изображения покемона
+                if let imageURLString = pokemonData.sprites.front_default, let imageURL = URL(string: imageURLString) {
+                    completion(imageURL)
+                } else {
                     completion(nil)
                 }
-            }.resume()
-        }
+            } catch {
+                completion(nil)
+            }
+        }.resume()
     }
+}
 
